@@ -36,7 +36,7 @@ export default class App extends Component {
     });
   }
   //obtain data using axios 
-  searchEngine = (query = 'scenic', istrue = false) => {
+  searchEngine = (query = 'sky blue', istrue = false) => {
      axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
     .then(answer => {
       this.setState({
@@ -66,7 +66,7 @@ export default class App extends Component {
               <Route exact path="/" render={ () => <Gallery title="Gallery" data={this.state.imgs} /> } /> 
               <Route path="/rainbows" render={ () => <Gallery title="Rainbows" data={this.state.imgs} /> } /> 
               <Route path="/flowers" render={ () => <Gallery title="Flowers" data={this.state.imgs} /> } /> 
-              <Route path="/dallascowboys" render={ () => <Gallery title="DallasCowboys" data={this.state.imgs} /> } /> 
+              <Route path="/dallascowboys" render={ () => <Gallery title="Dallas Cowboys" data={this.state.imgs} /> } /> 
               <Route path="/:query" render={ ({match}) => <Gallery test={match} search={this.searchEngine(match.params.query)} title={match.params.query.toUpperCase()} data={this.state.imgs} /> } />  
               <Route component={NotFound} />
             </Switch>  

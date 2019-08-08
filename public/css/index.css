@@ -20,7 +20,7 @@ a {
 }
 
 .search-form {
-  max-width: 460px;
+  max-width: 250px;
   display: flex;
   margin: 0 auto 32px;
 }
@@ -36,9 +36,9 @@ a {
 
 input {
   font-size: 1em;
-  width: 75%;
+  width: 45%;
   background-color: #edeff0;
-  padding: 10px 15px;
+  padding: 7px 15px;
   border: 3px solid #d7dbdf;
   border-right: none;
   border-radius: 0.35em 0 0 0.35em;

@@ -6,11 +6,11 @@ class SearchBar extends Component {
   state = {
     findText: ''
   }
-  //Set the users query to the state of this class
+  //Set query to the state of class
   onSearchChange = e => {
     this.setState({ findText: e.target.value });
   }
-  //Takes users query and passes it back to parent to obtain api data
+  //Take query and passes it back to parent to obtain api data
   handleSubmit = e => {
     e.preventDefault();
     let query = this.query.value;
@@ -25,7 +25,7 @@ class SearchBar extends Component {
   }
 
   render() {
-    //Create input "search" form/allow users to make searches
+    //Create input "search" form
     return (
       <form className="search-bar" onSubmit={this.handleSubmit} >
         <input type="search" 

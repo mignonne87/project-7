@@ -22,7 +22,7 @@ const Gallery = (props) => {
   }
 
   return(
-    //create ul element and use props and photos variable to access and pass info
+    //create ul element and use props and photos variable to pass info
     <div className="photo-container">
       <h1>{props.title}</h1>
       <ul>
