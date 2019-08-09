@@ -1,6 +1,6 @@
-//Flickr's Api key
+//Flickr's API KEY
  import apiKey from './config.js';
-//import the libraries needed for this project
+//import the libraries for this project
 import React, { Component } from 'react';
  import axios from 'axios';
 import {
