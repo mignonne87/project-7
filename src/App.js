@@ -59,7 +59,7 @@ export default class App extends Component {
     }
   }
 
-  render() {
+    render() {
     return (
       //Add routes and a h3 display while the data is being fetched
       <BrowserRouter>

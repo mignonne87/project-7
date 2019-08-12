@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This project has 3 main topics that search 24 random photos with a search option to 
+search other topics. If a option is not available "Page Not Found" will populate. Contains
+an "Error Message" in the localhost3000 area if items is input incorrectly in the search bar.
+
 ## Available Scripts
 
 In the project directory, you can run:
