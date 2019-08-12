@@ -27,7 +27,7 @@ a {
 
 .search-form button {
   outline: none;
-  background-color: #438bbd;
+  background-color: #b6151d;
   border: none;
   padding: 0px 45px;
   border-radius: 0 0.35em 0.35em 0;
@@ -37,9 +37,9 @@ a {
 input {
   font-size: 1em;
   width: 75%;
-  background-color: #edeff0;
+  background-color: #f3eced;
   padding: 7px 15px;
-  border: 3px solid #d7dbdf;
+  border: 3px solid #b6151d;
   border-right: none;
   border-radius: 0.35em 0 0 0.35em;
   outline: none;
@@ -61,7 +61,7 @@ input {
 .main-nav .active,
 .main-nav a:hover,
 .search-form button:hover {
-  background-color: #275270;
+  background-color: #0f3855;
 }
 
 .photo-container ul {
