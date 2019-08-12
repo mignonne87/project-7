@@ -38,7 +38,7 @@ export default class App extends Component {
     });
   }
   //obtain data using axios 
-  searchEngine = (query = 'red') => {
+  searchEngine = (query = 'sky blue') => {
     if (query !== this.state.lastSearch) {
       this.setState({
         lastSearch: query,
