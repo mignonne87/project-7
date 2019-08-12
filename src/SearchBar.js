@@ -16,7 +16,7 @@ class SearchBar extends Component {
     let query = this.query.value;
 
     if (query.length > 0) {
-      let path = `${query}`;
+      let path = `/search/${query}`;
       this.props.history.push(path);
       this.props.onSearch(this.state.findText, true);
     }

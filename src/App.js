@@ -1,8 +1,8 @@
 //Flickr's API KEY
- import apiKey from './config.js';
+import apiKey from './config.js';
 //import the libraries for this project
 import React, { Component } from 'react';
- import axios from 'axios';
+import axios from 'axios';
 import {
   BrowserRouter,
   Switch,
@@ -12,7 +12,8 @@ import {
 import SearchBar from './SearchBar'
 import Nav from './Nav'
 import Gallery from './Gallery'
-import NotFound from './NotFound'
+// import NotFound from './NotFound'
+import ErrorMsg from './ErrorMsg'
 
 
 export default class App extends Component {
@@ -21,12 +22,13 @@ export default class App extends Component {
     super();
     this.state = {
       imgs: [],
+      lastSearch: '',
       loading: true
     };
   }
 
   componentDidMount() {
-  // Initialization
+    // Initialization
     this.searchEngine();
   }
 
@@ -36,40 +38,46 @@ export default class App extends Component {
     });
   }
   //obtain data using axios 
-  searchEngine = (query = 'sky blue', istrue = false) => {
-     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
-    .then(answer => {
+  searchEngine = (query = 'red') => {
+    if (query !== this.state.lastSearch) {
       this.setState({
-        //set data to imgs state
-        imgs: answer.data.photos.photo,
-        loading: istrue
+        lastSearch: query,
+        loading: true
       });
-    })
-    .catch(error => {
-      // console error for debugging
-      console.log('Error fetching and parsing data', error);
-    });
+      axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+        .then(answer => {
+          this.setState({
+            //set data to imgs state
+            imgs: answer.data.photos.photo,
+            loading: false
+          });
+        })
+        .catch(error => {
+          // console error for debugging
+          console.log('error fetching and parsing data', error);
+        });
+    }
   }
 
   render() {
-    return (  
+    return (
       //Add routes and a h3 display while the data is being fetched
       <BrowserRouter>
         <div className="container">
           <SearchBar onSearch={this.searchEngine} />
-          <Nav istrue={this.isTrue}  onClick={this.searchEngine} />
+          <Nav istrue={this.isTrue} onClick={this.searchEngine} />
           {
             (this.state.loading)
-            ? <h3>Loading...</h3>
-            : 
-            <Switch>
-              <Route exact path="/" render={ () => <Gallery title="Gallery" data={this.state.imgs} /> } /> 
-              <Route path="/rainbows" render={ () => <Gallery title="Rainbows" data={this.state.imgs} /> } /> 
-              <Route path="/flowers" render={ () => <Gallery title="Flowers" data={this.state.imgs} /> } /> 
-              <Route path="/dallascowboys" render={ () => <Gallery title="Dallas Cowboys" data={this.state.imgs} /> } /> 
-              <Route path="/:query" render={ ({match}) => <Gallery test={match} search={this.searchEngine(match.params.query)} title={match.params.query.toUpperCase()} data={this.state.imgs} /> } />  
-              <Route component={NotFound} />
-            </Switch>  
+              ? <h3>Loading...</h3>
+              :
+              <Switch>
+                <Route exact path="/" render={() => <Gallery title="Gallery" data={this.state.imgs} />} />
+                <Route path="/rainbows" render={() => <Gallery title="Rainbows" data={this.state.imgs} />} />
+                <Route path="/flowers" render={() => <Gallery title="Flowers" data={this.state.imgs} />} />
+                <Route path="/dallascowboys" render={() => <Gallery title="Dallas Cowboys" data={this.state.imgs} />} />
+                <Route path="/search/:query" render={({ match }) => <Gallery test={match} search={this.searchEngine(match.params.query)} title={match.params.query.toUpperCase()} data={this.state.imgs} />} />
+                <Route component={ErrorMsg} />
+              </Switch>
           }
         </div>
       </BrowserRouter>
